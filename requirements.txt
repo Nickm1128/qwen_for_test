@@ -3,3 +3,4 @@ transformers
 accelerate
 sentence-transformers
 optimum
+autoawq

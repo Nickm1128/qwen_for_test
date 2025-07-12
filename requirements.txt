@@ -1,4 +1,7 @@
-sentence-transformers
-transformers
-accelerate
-flask
+flask>=2.0
+transformers>=4.40
+accelerate>=0.27
+sentence-transformers>=2.2
+torch>=2.1
+torchvision
+torchaudio

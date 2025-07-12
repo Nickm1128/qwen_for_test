@@ -3,13 +3,10 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 app = Flask(__name__)
 
-model_name = "Qwen/Qwen3-0.6B"
-
-# load tokenizer and model once when the server starts
-print("Loading model... this may take a while the first time")
-tokenizer = AutoTokenizer.from_pretrained(model_name)
+model_path = "/workspace/models/Qwen3-0.6B"
+tokenizer = AutoTokenizer.from_pretrained(model_path)
 model = AutoModelForCausalLM.from_pretrained(
-    model_name,
+    model_path,
     torch_dtype="auto",
     device_map="auto"
 )

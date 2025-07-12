@@ -1,14 +1,18 @@
 from flask import Flask, request, jsonify
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from optimum.gptq import GPTQQuantizer  
+import torch
 
 app = Flask(__name__)
 
-model_path = "/workspace/models/Qwen3-0.6B"
-tokenizer = AutoTokenizer.from_pretrained(model_path)
+model_id = "/workspace/models/Qwen3-8B-AWQ"
+
+tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(
-    model_path,
-    torch_dtype="auto",
-    device_map="auto"
+    model_id,
+    device_map="auto",             
+    torch_dtype=torch.float16,     
+    trust_remote_code=True         
 )
 
 @app.route('/chat', methods=['POST'])
